@@ -9,4 +9,19 @@ struct Point {
     let y: Int
 }
 
-let p1 = Point(x: 0, y: 0)
+let coordinatePoint = Point(x: 0, y: 0)
+
+struct User {
+    let name: String
+    let age: Int
+}
+
+let user = User(name: "Kevin", age: 41)
+
+struct Book {
+    let title: String
+    let author: String
+    let price: Double
+}
+
+let myBook = Book(title: "Animal Farm", author: "George Orwell", price: 6.00)
