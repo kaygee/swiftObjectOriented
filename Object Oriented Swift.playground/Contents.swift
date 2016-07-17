@@ -47,7 +47,7 @@ struct Book {
 
 let myBook = Book(title: "Animal Farm", author: "George Orwell", price: 6.00)
 
-struct Person {
+struct SimplePerson {
     let firstName: String
     let lastName: String
     
@@ -56,7 +56,7 @@ struct Person {
     }
 }
 
-let aPerson = Person(firstName: "Kevin", lastName: "Gann")
+let aPerson = SimplePerson(firstName: "Kevin", lastName: "Gann")
 let fullName = aPerson.getFullName()
 
 struct RGBColor {
@@ -159,3 +159,74 @@ class Business {
 }
 
 let someBusiness = Business(name: "5AM", location: Location(latitude: 1.0, longitude: 3.0))
+
+class SuperEnemy: Enemy {
+    let isSuper: Bool = true
+    
+    override init(x: Int, y: Int) {
+        super.init(x: x, y: y)
+        self.life = 50
+    }
+    
+}
+
+let superEnemy = SuperEnemy(x: 1, y: 1)
+
+class LaserTower: Tower {
+    
+    override init(x: Int, y: Int) {
+        super.init(x: x, y: y)
+        self.range = 100
+        self.strength = 100
+    }
+    
+    override func fireAtEnemy(enemy: Enemy) {
+        while enemy.life >= 0 {
+            enemy.decreaseHealth(strength)
+        }
+        print("Enemy friggin' lazered!")
+    }
+    
+}
+
+let laserTower = LaserTower(x: 5, y: 5)
+laserTower.fireAtEnemy(superEnemy)
+
+class Vehicle {
+    var numberOfDoors: Int
+    var numberOfWheels: Int
+    
+    init(withDoors doors: Int, andWheels wheels: Int) {
+        self.numberOfDoors = doors
+        self.numberOfWheels = wheels
+    }
+}
+
+class Car: Vehicle {
+    var numberOfSeats: Int = 4
+}
+
+let someCar = Car(withDoors: 4, andWheels: 3)
+
+class Person {
+    let firstName: String
+    let lastName: String
+    
+    init(firstName: String, lastName: String) {
+        self.firstName = firstName
+        self.lastName = lastName
+    }
+    
+    func getFullName() -> String {
+        return "\(firstName) \(lastName)"
+    }
+}
+
+class Doctor: Person {
+    override func getFullName() -> String {
+        return "Dr. \(lastName)"
+    }
+}
+
+let someDoctor = Doctor(firstName: "Kevin", lastName: "Gann")
+someDoctor.getFullName()
